@@ -6,6 +6,7 @@ import minecraftlite.items.FireStick;
 import minecraftlite.items.LightingStick;
 import minecraftlite.items.MagicBlazeRod;
 import minecraftlite.items.TransmutationStick;
+import minecraftlite.items.TreeStick;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
@@ -33,6 +34,7 @@ public class MinecraftLite {
    public static Item orestick;
    public static Item minestick;
    public static Item rainstick;
+   public static Item treestick;
    @EventHandler
    public void preInit(FMLPreInitializationEvent event) {
            Configuration config = new Configuration(event.getSuggestedConfigurationFile());
@@ -48,7 +50,8 @@ public class MinecraftLite {
            //Config for the Item OreStick
            oreItemID = config.get(Configuration.CATEGORY_ITEM, "oreItemID", 3197).getInt();
            
-           
+           //Config for the Item TreeStick
+           treeItemID = config.get(Configuration.CATEGORY_ITEM, "treeItemID", 3719).getInt();
          //Config for the Item MineStick
            mineItemID = config.get(Configuration.CATEGORY_ITEM, "mineItemID", 3917).getInt();
           
@@ -109,11 +112,17 @@ public class MinecraftLite {
 	   
 	   tntstick = new TnTStick(TntItemID);
 	   LanguageRegistry.addName(tntstick, "Blow up stuff stick");
-	   
+	  
+	   treestick = new TreeStick(TntItemID);
+	   LanguageRegistry.addName(treestick, "Tree Stick");
 	   
 	   rainstick = new RainStick(rainItemID);
 	   LanguageRegistry.addName(rainstick, "Rain stick");
 	   
+	   ItemStack wood = new ItemStack(Block.wood);
+		
+       GameRegistry.addRecipe(new ItemStack(treestick), "x", "x",
+	                'x', wood);
 	   
 	   ItemStack water = new ItemStack(Item.bucketWater);
 		
@@ -306,5 +315,7 @@ public static boolean Bedrock;
    public static int oreItemID;
    public static int mineItemID;
    public static int rainItemID;
+   public static int treeItemID;
+   
 }
 
