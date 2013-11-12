@@ -38,7 +38,8 @@ public class MiningStick extends Item {
     }
 	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer)
     {
-    float f = 1.0F;
+    o = true;
+		float f = 1.0F;
     float f1 = entityplayer.prevRotationPitch + (entityplayer.rotationPitch - entityplayer.prevRotationPitch) * f;
     float f2 = entityplayer.prevRotationYaw + (entityplayer.rotationYaw - entityplayer.prevRotationYaw) * f;
     double d = entityplayer.prevPosX + (entityplayer.posX - entityplayer.prevPosX) * (double)f;
@@ -65,14 +66,30 @@ public class MiningStick extends Item {
             int j = movingobjectposition.blockY;
             int k = movingobjectposition.blockZ;
     
-            int l = world.getBlockId(i, j, k);
-            int y = world.getBlockMetadata(i, j, k);
+            
+            
+            int l;
+            int m;
+            int n;
+            
+            int t;
+            int r;
+            int s;
             for(int p = 0; p < 21; p++) {
             	Increase = p;
-            	i = i + Increase;
-            	j = j - Increase;
-            	k = k + Increase;
-            	destroyBlockInWorldPartially(i, j, k, l, y);
+            	l = i + Increase;
+            	m = j + Increase;
+            	n = k + Increase;
+            	t = i - Increase;
+            	r = j - Increase;
+            	s = k - Increase;
+            	world.destroyBlock(l, m, n, o);
+            	
+            	
+            	if(p == 20) {
+            		o = false;
+            	}
+            	
             
             }
     
@@ -81,16 +98,8 @@ public class MiningStick extends Item {
 	
 	
     }
-
-	  public static void destroyBlockInWorldPartially(int par1, int par2, int par3, int par4, int par5)
-	    {
-	        for (int j1 = 0; j1 < worldAccesses.size(); ++j1)
-	        {
-	            IWorldAccess iworldaccess = (IWorldAccess)worldAccesses.get(j1);
-	            iworldaccess.destroyBlockPartially(par1, par2, par3, par4, par5);
-	        }
-	    }
-	  
-	  protected static List worldAccesses = new ArrayList();
+	
+	public static boolean o;
+	public static int id;
 public static int Increase;
 }
