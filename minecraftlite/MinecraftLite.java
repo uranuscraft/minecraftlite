@@ -1,5 +1,6 @@
 package minecraftlite;
 import minecraftlite.items.MiningStick;
+import minecraftlite.items.RainStick;
 import minecraftlite.items.TnTStick;
 import minecraftlite.items.FireStick;
 import minecraftlite.items.LightingStick;
@@ -31,6 +32,7 @@ public class MinecraftLite {
    public static Item tntstick;
    public static Item orestick;
    public static Item minestick;
+   public static Item rainstick;
    @EventHandler
    public void preInit(FMLPreInitializationEvent event) {
            Configuration config = new Configuration(event.getSuggestedConfigurationFile());
@@ -43,12 +45,19 @@ public class MinecraftLite {
            BlazeItemID = config.get(Configuration.CATEGORY_ITEM, "BlazeItemID", 1397).getInt();
          
            
-           //Config for an Item in the OreStick
+           //Config for the Item OreStick
            oreItemID = config.get(Configuration.CATEGORY_ITEM, "oreItemID", 3197).getInt();
            
            
-         //Config for an Item in the MineStick
+         //Config for the Item MineStick
            mineItemID = config.get(Configuration.CATEGORY_ITEM, "mineItemID", 3917).getInt();
+          
+           
+           
+         //Config for the Item the rainStick
+           rainItemID = config.get(Configuration.CATEGORY_ITEM, "rainItemID", 1717).getInt();
+           
+           
            
            //Config for the new tnt
            TntItemID = config.get(Configuration.CATEGORY_ITEM, "TntItemID", 1739).getInt();
@@ -100,6 +109,19 @@ public class MinecraftLite {
 	   
 	   tntstick = new TnTStick(TntItemID);
 	   LanguageRegistry.addName(tntstick, "Blow up stuff stick");
+	   
+	   
+	   rainstick = new RainStick(rainItemID);
+	   LanguageRegistry.addName(rainstick, "Rain stick");
+	   
+	   
+	   ItemStack water = new ItemStack(Item.bucketWater);
+		
+       GameRegistry.addRecipe(new ItemStack(rainstick), "x", "x",
+	                'x', water);
+	   
+	   
+	   
 	   
 	   minestick = new MiningStick(mineItemID);
 	   LanguageRegistry.addName(minestick, "Mining Stick");
@@ -283,5 +305,6 @@ public static boolean Bedrock;
    public static int TntItemID;
    public static int oreItemID;
    public static int mineItemID;
+   public static int rainItemID;
 }
 
