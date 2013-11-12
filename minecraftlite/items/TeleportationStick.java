@@ -1,6 +1,7 @@
 package minecraftlite.items;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumMovingObjectType;
@@ -14,7 +15,7 @@ public class TeleportationStick extends Item {
 	public TeleportationStick(int par1) {
 		super(par1);
 		maxStackSize = 64;
-        setUnlocalizedName("timestick");
+        setUnlocalizedName("enderstick");
 	}
 	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer)
     {
@@ -45,7 +46,21 @@ public class TeleportationStick extends Item {
             int j = movingobjectposition.blockY;
             int k = movingobjectposition.blockZ;
 
+            
+           
+            teleportMP((double) i, (double) j, (double) k);
+            
+    
+    
+    
     }
      return itemstack; 
     }
+
+
+public static EntityPlayerMP player1;
+public void teleportMP(double par1, double par3, double par5)
+{
+   player1.setPositionAndUpdate(par1, par3, par5);
+}
 }

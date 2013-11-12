@@ -1,6 +1,8 @@
 package minecraftlite;
 import minecraftlite.items.MiningStick;
 import minecraftlite.items.RainStick;
+import minecraftlite.items.TeleportationStick;
+import minecraftlite.items.TimeStick;
 import minecraftlite.items.TnTStick;
 import minecraftlite.items.FireStick;
 import minecraftlite.items.LightingStick;
@@ -35,6 +37,8 @@ public class MinecraftLite {
    public static Item minestick;
    public static Item rainstick;
    public static Item treestick;
+   public static Item timestick;
+   public static Item enderstick;
    @EventHandler
    public void preInit(FMLPreInitializationEvent event) {
            Configuration config = new Configuration(event.getSuggestedConfigurationFile());
@@ -46,7 +50,8 @@ public class MinecraftLite {
          //Config for an Item in the FireMod
            BlazeItemID = config.get(Configuration.CATEGORY_ITEM, "BlazeItemID", 1397).getInt();
          
-           
+         //Config for the Item TimeStick
+           timeItemID = config.get(Configuration.CATEGORY_ITEM, "timeItemID", 2197).getInt();
            //Config for the Item OreStick
            oreItemID = config.get(Configuration.CATEGORY_ITEM, "oreItemID", 3197).getInt();
            
@@ -55,7 +60,9 @@ public class MinecraftLite {
          //Config for the Item MineStick
            mineItemID = config.get(Configuration.CATEGORY_ITEM, "mineItemID", 3917).getInt();
           
-           
+           //Config for the Item EnderStick
+           enderItemID = config.get(Configuration.CATEGORY_ITEM, "enderItemID", 1718).getInt();
+          
            
          //Config for the Item the rainStick
            rainItemID = config.get(Configuration.CATEGORY_ITEM, "rainItemID", 1717).getInt();
@@ -110,10 +117,26 @@ public class MinecraftLite {
    @EventHandler
    public void load(FMLInitializationEvent event) {
 	   
+	   enderstick = new TeleportationStick(enderItemID);
+	   LanguageRegistry.addName(enderstick, "Teleportation Stick");
+	   
+	   ItemStack end = new ItemStack(Item.enderPearl);
+		
+       GameRegistry.addRecipe(new ItemStack(enderstick), "x", "x",
+	                'x', end);
+	   
 	   tntstick = new TnTStick(TntItemID);
 	   LanguageRegistry.addName(tntstick, "Blow up stuff stick");
 	  
-	   treestick = new TreeStick(TntItemID);
+	   timestick = new TimeStick(timeItemID);
+	   LanguageRegistry.addName(timestick, "Time Stick");
+	  
+	  ItemStack daylight = new ItemStack(Block.daylightSensor);
+		
+       GameRegistry.addRecipe(new ItemStack(timestick), "x", "x",
+	                'x', daylight);
+	   
+	   treestick = new TreeStick(treeItemID);
 	   LanguageRegistry.addName(treestick, "Tree Stick");
 	   
 	   rainstick = new RainStick(rainItemID);
@@ -316,6 +339,8 @@ public static boolean Bedrock;
    public static int mineItemID;
    public static int rainItemID;
    public static int treeItemID;
+   public static int timeItemID;
+   public static int enderItemID;
    
 }
 
