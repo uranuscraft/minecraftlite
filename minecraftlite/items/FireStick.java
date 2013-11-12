@@ -71,14 +71,33 @@ public class FireStick extends Item {
 	                int j = movingobjectposition.blockY;
 	                int k = movingobjectposition.blockZ;
 	         
-	                for(int w = 1; w < 3; w++) {
+	                for(int w = 0; w < 2; w++) {
 		                o = w;
-		                	i = i + o;
-		                j = j + o;
-		                k = k + o;
-		                	
+		                	l = i + o;
+		               
+		                n = k + o;
 		                
-		                world.setBlock(i, j, k, Block.fire.blockID);
+		                
+		                q = i - o;
+		                r = j - o;
+		                s = k - o;
+
+		               
+		                if(world.isAirBlock(q, r, s)) {
+			                world.setBlock(q, r, s, Block.fire.blockID);
+			                }
+		                if(world.isAirBlock(q, r, n)) {
+			                world.setBlock(q, r, n, Block.fire.blockID);
+			                }
+		               
+		                if(world.isAirBlock(l, r, s)) {
+			                world.setBlock(l, r, s, Block.fire.blockID);
+			                }
+		                
+		                if(world.isAirBlock(l, r, n)) {
+			                world.setBlock(l, r, n, Block.fire.blockID);
+			                }
+	                
 	                }
 	         }return itemstack; 
 	    	
@@ -87,6 +106,12 @@ public class FireStick extends Item {
 	    }
 	        
 	public static int o;        
+	public static int l;
+	
+	public static int n;
+	public static int q;
+	public static int r;
+	public static int s;
 }
 			
 	       
