@@ -1,14 +1,8 @@
 package minecraftlite.items;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import minecraftlite.MinecraftLite;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.item.EntityTNTPrimed;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.projectile.EntitySmallFireball;
-import net.minecraft.entity.projectile.EntityWitherSkull;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumMovingObjectType;
@@ -17,27 +11,16 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-public class TnTStick extends Item{
-	
-	
-	
-	public TnTStick(int par1) {
+public class TeleportationStick extends Item {
+
+	public TeleportationStick(int par1) {
 		super(par1);
-		 maxStackSize = 64;
-	        setUnlocalizedName("TntStick");
+		maxStackSize = 64;
+        setUnlocalizedName("enderstick");
 	}
-
-
-	@SideOnly(Side.CLIENT)
-    public void registerIcons(IconRegister par1IconRegister)
+	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer)
     {
-        this.itemIcon = par1IconRegister.registerIcon(MinecraftLite.modid + ":" + (this.getUnlocalizedName().substring(5)));
-    }
-    
-    
-    public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer)
-    {
-    float f = 1.0F;
+	float f = 1.0F;
     float f1 = entityplayer.prevRotationPitch + (entityplayer.rotationPitch - entityplayer.prevRotationPitch) * f;
     float f2 = entityplayer.prevRotationYaw + (entityplayer.rotationYaw - entityplayer.prevRotationYaw) * f;
     double d = entityplayer.prevPosX + (entityplayer.posX - entityplayer.prevPosX) * (double)f;
@@ -60,21 +43,23 @@ public class TnTStick extends Item{
     }
      if (movingobjectposition.typeOfHit == EnumMovingObjectType.TILE)
     {
-    int i = movingobjectposition.blockX;
-         int j = movingobjectposition.blockY;
+     int i = movingobjectposition.blockX;
+            int j = movingobjectposition.blockY - 1;
             int k = movingobjectposition.blockZ;
-            if(entityplayer.capabilities.isCreativeMode||entityplayer.inventory.consumeInventoryItem(Item.redstone.itemID)) {
-            world.spawnEntityInWorld(new EntityTNTPrimed(world, i, j, k, entityplayer));
-            }
+
+            double a = (double)i;
+            double b = (double)j;
+            double c = (double)k;
+            if(entityplayer.capabilities.isCreativeMode||entityplayer.inventory.consumeInventoryItem(Item.redstone.itemID)) { 
             
-            
-    }return itemstack; 
-	
-	
-	
-}
-	
+            entityplayer.setLocationAndAngles(a, b, c, entityplayer.rotationYaw, 0.0F);
+            }  
+    
+    }
+     return itemstack; 
+    }
 
 
+public static Entity par1Entity;
 
 }

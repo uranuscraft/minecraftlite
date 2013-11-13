@@ -74,21 +74,50 @@ public class MagicBlazeRod extends Item {
 	                int j = movingobjectposition.blockY;
 	                int k = movingobjectposition.blockZ;
 	                int l = j - 3;
-	                world.spawnEntityInWorld(new EntityTNTPrimed(world, i, l, k, entityplayer));
-	                for(int w = 1; w < 6; w++) {
-	                o = w;
-	                	i = i + o;
-	                j = j + o;
-	                k = k + o;
-	                	world.setBlock(i, j, k, Block.fire.blockID);
-	                }
 	                
+	                if(entityplayer.capabilities.isCreativeMode||entityplayer.inventory.consumeInventoryItem(Item.redstone.itemID)) {
+	                world.spawnEntityInWorld(new EntityTNTPrimed(world, i, l, k, entityplayer));
+	                for(int w = 0; w < 5; w++) {
+	                	o = w;
+	                	l = i + o;
+	               
+	                n = k + o;
+	                
+	                
+	                q = i - o;
+	                r = j - o;
+	                s = k - o;
+
+	               
+	                if(world.isAirBlock(q, r, s)) {
+		                world.setBlock(q, r, s, Block.fire.blockID);
+		                }
+	                if(world.isAirBlock(q, r, n)) {
+		                world.setBlock(q, r, n, Block.fire.blockID);
+		                }
+	               
+	                if(world.isAirBlock(l, r, s)) {
+		                world.setBlock(l, r, s, Block.fire.blockID);
+		                }
+	                
+	                if(world.isAirBlock(l, r, n)) {
+		                world.setBlock(l, r, n, Block.fire.blockID);
+		                }
+	                }
+	                }  
 	        }return itemstack; 
 	    	
 	    	
 	    	
 	    }
-public static int o;
+	        public static int o;        
+	    	public static int l;
+	    	
+	    	public static int n;
+	    	public static int q;
+	    	public static int r;
+	    	public static int s;
+
 }
 			
 	       

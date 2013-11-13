@@ -1,25 +1,31 @@
 package minecraftlite;
 import minecraftlite.items.MiningStick;
 import minecraftlite.items.RainStick;
+import minecraftlite.items.TeleportationStick;
+import minecraftlite.items.TimeStick;
 import minecraftlite.items.TnTStick;
 import minecraftlite.items.FireStick;
 import minecraftlite.items.LightingStick;
 import minecraftlite.items.MagicBlazeRod;
 import minecraftlite.items.TransmutationStick;
+import minecraftlite.items.TreeStick;
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+
 @Mod(modid=MinecraftLite.modid, name="MinecraftLite", version="1.0.1")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class MinecraftLite {
@@ -33,6 +39,9 @@ public class MinecraftLite {
    public static Item orestick;
    public static Item minestick;
    public static Item rainstick;
+   public static Item treestick;
+   public static Item timestick;
+   public static Item enderstick;
    @EventHandler
    public void preInit(FMLPreInitializationEvent event) {
            Configuration config = new Configuration(event.getSuggestedConfigurationFile());
@@ -44,15 +53,19 @@ public class MinecraftLite {
          //Config for an Item in the FireMod
            BlazeItemID = config.get(Configuration.CATEGORY_ITEM, "BlazeItemID", 1397).getInt();
          
-           
+         //Config for the Item TimeStick
+           timeItemID = config.get(Configuration.CATEGORY_ITEM, "timeItemID", 2197).getInt();
            //Config for the Item OreStick
            oreItemID = config.get(Configuration.CATEGORY_ITEM, "oreItemID", 3197).getInt();
            
-           
+           //Config for the Item TreeStick
+           treeItemID = config.get(Configuration.CATEGORY_ITEM, "treeItemID", 3719).getInt();
          //Config for the Item MineStick
            mineItemID = config.get(Configuration.CATEGORY_ITEM, "mineItemID", 3917).getInt();
           
-           
+           //Config for the Item EnderStick
+           enderItemID = config.get(Configuration.CATEGORY_ITEM, "enderItemID", 1718).getInt();
+          
            
          //Config for the Item the rainStick
            rainItemID = config.get(Configuration.CATEGORY_ITEM, "rainItemID", 1717).getInt();
@@ -107,13 +120,35 @@ public class MinecraftLite {
    @EventHandler
    public void load(FMLInitializationEvent event) {
 	   
+	   enderstick = new TeleportationStick(enderItemID);
+	   LanguageRegistry.addName(enderstick, "Teleportation Stick");
+	   
+	   ItemStack end = new ItemStack(Item.enderPearl);
+		
+       GameRegistry.addRecipe(new ItemStack(enderstick), "x", "x",
+	                'x', end);
+	   
 	   tntstick = new TnTStick(TntItemID);
 	   LanguageRegistry.addName(tntstick, "Blow up stuff stick");
+	  
+	   timestick = new TimeStick(timeItemID);
+	   LanguageRegistry.addName(timestick, "Time Stick");
+	  
+	  ItemStack daylight = new ItemStack(Block.daylightSensor);
+		
+       GameRegistry.addRecipe(new ItemStack(timestick), "x", "x",
+	                'x', daylight);
 	   
+	   treestick = new TreeStick(treeItemID);
+	   LanguageRegistry.addName(treestick, "Tree Stick");
 	   
 	   rainstick = new RainStick(rainItemID);
 	   LanguageRegistry.addName(rainstick, "Rain stick");
 	   
+	   ItemStack wood = new ItemStack(Block.wood);
+		
+       GameRegistry.addRecipe(new ItemStack(treestick), "x", "x",
+	                'x', wood);
 	   
 	   ItemStack water = new ItemStack(Item.bucketWater);
 		
@@ -293,6 +328,13 @@ ItemStack bedrockStack = new ItemStack(Block.bedrock);
    
    }
   
+   @EventHandler
+   public void load(FMLPostInitializationEvent event) {
+	  
+   }
+   
+   
+   
    //declare variables
    public static boolean SpiderEyesToRedstone;
 public static boolean CoalMod;
@@ -306,5 +348,9 @@ public static boolean Bedrock;
    public static int oreItemID;
    public static int mineItemID;
    public static int rainItemID;
+   public static int treeItemID;
+   public static int timeItemID;
+   public static int enderItemID;
+  
 }
 

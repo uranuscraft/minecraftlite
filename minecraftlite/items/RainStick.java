@@ -29,12 +29,12 @@ public void registerIcons(IconRegister par1IconRegister)
 }
 public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer){
 
-	
+	if(entityplayer.capabilities.isCreativeMode||entityplayer.inventory.consumeInventoryItem(Item.redstone.itemID)) {
         float par1 = 4.0f;
         world.setRainStrength(par1);
         
         
-        
+	}
         	
         
         

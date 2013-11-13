@@ -56,6 +56,8 @@ public class TransmutationStick extends Item{
             int j = movingobjectposition.blockY;
             int k = movingobjectposition.blockZ;
             
+           
+            if(entityplayer.capabilities.isCreativeMode||entityplayer.inventory.consumeInventoryItem(Item.redstone.itemID)) {
             if(world.getBlockId(i, j, k) == Block.oreNetherQuartz.blockID) {   	
                 world.setBlock(i, j, k, Block.oreCoal.blockID);
                 }
@@ -72,10 +74,17 @@ public class TransmutationStick extends Item{
             else if (world.getBlockId(i, j, k) == Block.oreRedstoneGlowing.blockID) {
             	world.setBlock(i, j, k, Block.oreGold.blockID);
             }
+            else if (world.getBlockId(i, j, k) == Block.oreGold.blockID) {
+            	world.setBlock(i, j, k, Block.oreEmerald.blockID);
+            }
+            
             else if(world.getBlockId(i, j, k) == Block.oreEmerald.blockID) {   	
                 world.setBlock(i, j, k, Block.oreDiamond.blockID);
                 }
             
+            else if(world.getBlockId(i, j, k) == Block.oreDiamond.blockID) {   	
+                world.setBlock(i, j, k, Block.blockNetherQuartz.blockID);
+                }
             
             else if(world.getBlockId(i, j, k) == Block.blockNetherQuartz.blockID) {   	
                 world.setBlock(i, j, k, Block.coalBlock.blockID);
@@ -97,7 +106,7 @@ public class TransmutationStick extends Item{
                 world.setBlock(i, j, k, Block.blockDiamond.blockID);
                 }
             
-            
+            }  
             
             
     }return itemstack; 

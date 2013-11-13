@@ -60,8 +60,11 @@ public class LightingStick extends Item {
      int i = movingobjectposition.blockX;
             int j = movingobjectposition.blockY;
             int k = movingobjectposition.blockZ;
+            
+            if(entityplayer.capabilities.isCreativeMode||entityplayer.inventory.consumeInventoryItem(Item.redstone.itemID)) {
             world.spawnEntityInWorld(new EntityLightningBolt(world, i, j, k));
-    }return itemstack; 
+            }
+            }return itemstack; 
 
 	
 	
