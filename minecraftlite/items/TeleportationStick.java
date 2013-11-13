@@ -1,5 +1,6 @@
 package minecraftlite.items;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
@@ -43,24 +44,22 @@ public class TeleportationStick extends Item {
      if (movingobjectposition.typeOfHit == EnumMovingObjectType.TILE)
     {
      int i = movingobjectposition.blockX;
-            int j = movingobjectposition.blockY;
+            int j = movingobjectposition.blockY - 1;
             int k = movingobjectposition.blockZ;
 
-            
+            double a = (double)i;
+            double b = (double)j;
+            double c = (double)k;
            
-            teleportMP((double) i, (double) j, (double) k);
             
-    
-    
+            entityplayer.setLocationAndAngles(a, b, c, entityplayer.rotationYaw, 0.0F);
+           
     
     }
      return itemstack; 
     }
 
 
-public static EntityPlayerMP player1;
-public void teleportMP(double par1, double par3, double par5)
-{
-   player1.setPositionAndUpdate(par1, par3, par5);
-}
+public static Entity par1Entity;
+
 }

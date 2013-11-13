@@ -19,14 +19,20 @@ public class TimeStick extends Item {
 	}
 	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer)
     {
-    boolean u = world.isDaytime();
-     if(u = true) {
-    	 world.setWorldTime(18000);
+   
+		long t = world.getWorldTime();
+     if(t >= 22812 || t <= 13187 ) {
+    	 world.setWorldTime(18000); 
      }
-     if(u = false) {
+     
+     
+     else if(t <= 22812 || t >= 13187 ) {
     	 world.setWorldTime(1200);
+    	
      }      
-                	
+     else {
+    	 System.out.print("ERROR");
+     }
                 
                 
             

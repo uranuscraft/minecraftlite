@@ -11,6 +11,7 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 
 public class TreeStick extends Item {
@@ -50,16 +51,127 @@ public class TreeStick extends Item {
             int j = movingobjectposition.blockY;
             int k = movingobjectposition.blockZ;
      
+           biome = world.getBiomeGenForCoords(i, k);
+          
+           
+        	  
+        	   
+        	   world.setBlock(i, j, k, Block.wood.blockID);
+        	   world.setBlock(i, j + 1, k, Block.wood.blockID);
+        	   world.setBlock(i, j + 2, k, Block.wood.blockID);
+        	   world.setBlock(i, j + 3, k, Block.wood.blockID);
+        	   world.setBlock(i, j + 4, k, Block.wood.blockID);
+        	   world.setBlock(i, j + 5, k, Block.wood.blockID);
+        	   world.setBlock(i, j + 6, k, Block.leaves.blockID);
+        	   
+        	   world.setBlock(i, j + 6, k + 1, Block.leaves.blockID);
+        	   world.setBlock(i + 1, j + 6, k, Block.leaves.blockID);
+        	   world.setBlock(i, j + 6, k - 1, Block.leaves.blockID);
+        	   world.setBlock(i - 1, j + 6, k, Block.leaves.blockID);
+        	   
+        	   
+        	   world.setBlock(i + 1, j + 5, k + 1, Block.leaves.blockID);
+        	   world.setBlock(i, j + 5, k + 1, Block.leaves.blockID);
+        	   world.setBlock(i, j + 5, k - 1, Block.leaves.blockID);
+        	   world.setBlock(i - 1, j + 5, k, Block.leaves.blockID);
+        	  
+        	   world.setBlock(i + 1, j + 5, k + 1, Block.leaves.blockID);
+        	   world.setBlock(i - 1, j + 5, k - 1, Block.leaves.blockID);
+        	   
+        	   
+        	   world.setBlock(i - 1, j + 5, k + 1, Block.leaves.blockID);
+        	   world.setBlock(i + 1, j + 5, k - 1, Block.leaves.blockID);
+        	   
+        	  
+        	   world.setBlock(i + 1, j + 4, k + 1, Block.leaves.blockID);
+        	   world.setBlock(i, j + 4, k + 1, Block.leaves.blockID);
+        	   world.setBlock(i, j + 4, k - 1, Block.leaves.blockID);
+        	   world.setBlock(i - 1, j + 4, k, Block.leaves.blockID);
+        	  
+        	   world.setBlock(i + 1, j + 4, k + 1, Block.leaves.blockID);
+        	   world.setBlock(i - 1, j + 4, k - 1, Block.leaves.blockID);
+        	   
+        	   
+        	   world.setBlock(i - 1, j + 4, k + 1, Block.leaves.blockID);
+        	   world.setBlock(i + 1, j + 4, k - 1, Block.leaves.blockID);
+           
            
                 	
+        	   world.setBlock(i + 2, j + 4, k + 2, Block.leaves.blockID);
+        	   world.setBlock(i, j + 4, k + 2, Block.leaves.blockID);
+        	   world.setBlock(i, j + 4, k - 2, Block.leaves.blockID);
+        	   world.setBlock(i - 2, j + 4, k, Block.leaves.blockID);
+        	  
+        	   world.setBlock(i + 2, j + 4, k + 2, Block.leaves.blockID);
+        	   world.setBlock(i - 2, j + 4, k - 2, Block.leaves.blockID);
+        	   
+        	   
+        	   world.setBlock(i - 3, j + 4, k + 3, Block.leaves.blockID);
+        	   world.setBlock(i + 3, j + 4, k - 3, Block.leaves.blockID);
+           
+        	   world.setBlock(i + 3, j + 4, k + 3, Block.leaves.blockID);
+        	   world.setBlock(i, j + 4, k + 3, Block.leaves.blockID);
+        	   world.setBlock(i, j + 4, k - 3, Block.leaves.blockID);
+        	   world.setBlock(i - 3, j + 4, k, Block.leaves.blockID);
+        	  
+        	   world.setBlock(i + 3, j + 4, k + 3, Block.leaves.blockID);
+        	   world.setBlock(i - 3, j + 4, k - 3, Block.leaves.blockID);
+        	   
+        	   
+        	   world.setBlock(i - 3, j + 4, k + 3, Block.leaves.blockID);
+        	   world.setBlock(i + 3, j + 4, k - 3, Block.leaves.blockID);
+           
+        	   
                 
-                gen(world, random, i, j, k);
+         
+        	   
+        	   world.setBlock(i + 1, j + 3, k + 1, Block.leaves.blockID);
+        	   world.setBlock(i, j + 3, k + 1, Block.leaves.blockID);
+        	   world.setBlock(i, j + 3, k - 1, Block.leaves.blockID);
+        	   world.setBlock(i - 1, j + 3, k, Block.leaves.blockID);
+        	  
+        	   world.setBlock(i + 1, j + 3, k + 1, Block.leaves.blockID);
+        	   world.setBlock(i - 1, j + 3, k - 1, Block.leaves.blockID);
+        	   
+        	   
+        	   world.setBlock(i - 1, j + 3, k + 1, Block.leaves.blockID);
+        	   world.setBlock(i + 1, j + 3, k - 1, Block.leaves.blockID);
+           
+           
+                	
+        	   world.setBlock(i + 2, j + 3, k + 2, Block.leaves.blockID);
+        	   world.setBlock(i, j + 3, k + 2, Block.leaves.blockID);
+        	   world.setBlock(i, j + 3, k - 2, Block.leaves.blockID);
+        	   world.setBlock(i - 2, j + 3, k, Block.leaves.blockID);
+        	  
+        	   world.setBlock(i + 2, j + 3, k + 2, Block.leaves.blockID);
+        	   world.setBlock(i - 2, j + 3, k - 2, Block.leaves.blockID);
+        	   
+        	   
+        	   world.setBlock(i - 3, j + 3, k + 3, Block.leaves.blockID);
+        	   world.setBlock(i + 3, j + 3, k - 3, Block.leaves.blockID);
+           
+        	   world.setBlock(i + 3, j + 3, k + 3, Block.leaves.blockID);
+        	   world.setBlock(i, j + 3, k + 3, Block.leaves.blockID);
+        	   world.setBlock(i, j + 3, k - 3, Block.leaves.blockID);
+        	   world.setBlock(i - 3, j + 3, k, Block.leaves.blockID);
+        	  
+        	   world.setBlock(i + 3, j + 3, k + 3, Block.leaves.blockID);
+        	   world.setBlock(i - 3, j + 3, k - 3, Block.leaves.blockID);
+        	   
+        	   
+        	   world.setBlock(i - 3, j + 3, k + 3, Block.leaves.blockID);
+        	   world.setBlock(i + 3, j + 3, k - 3, Block.leaves.blockID);
+           
+        	   
+        	   
+        	   
+        	   
             
      }return itemstack; 
 }
-public static Random random;
-public static WorldGenTrees tree;
-public static void gen(World par1World, Random par2Random, int par3, int par4, int par5) {
-	tree.generate(par1World, par2Random, par3, par4, par5);
-}
+public static BiomeGenBase biome;
+public static Block block;
+
+
 }
