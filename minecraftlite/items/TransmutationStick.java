@@ -72,10 +72,17 @@ public class TransmutationStick extends Item{
             else if (world.getBlockId(i, j, k) == Block.oreRedstoneGlowing.blockID) {
             	world.setBlock(i, j, k, Block.oreGold.blockID);
             }
+            else if (world.getBlockId(i, j, k) == Block.oreGold.blockID) {
+            	world.setBlock(i, j, k, Block.oreEmerald.blockID);
+            }
+            
             else if(world.getBlockId(i, j, k) == Block.oreEmerald.blockID) {   	
                 world.setBlock(i, j, k, Block.oreDiamond.blockID);
                 }
             
+            else if(world.getBlockId(i, j, k) == Block.oreDiamond.blockID) {   	
+                world.setBlock(i, j, k, Block.blockNetherQuartz.blockID);
+                }
             
             else if(world.getBlockId(i, j, k) == Block.blockNetherQuartz.blockID) {   	
                 world.setBlock(i, j, k, Block.coalBlock.blockID);
