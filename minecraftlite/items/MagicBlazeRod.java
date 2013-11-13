@@ -99,14 +99,6 @@ public class MagicBlazeRod extends Item {
 	                if(world.isAirBlock(l, r, s)) {
 		                world.setBlock(l, r, s, Block.fire.blockID);
 		                }
-<<<<<<< HEAD
-=======
-	                
-	                if(world.isAirBlock(l, r, n)) {
-		                world.setBlock(l, r, n, Block.fire.blockID);
-		                }
-	                }
->>>>>>> cd11bae41c4f935545d5419600d0714a06ca6502
 	                
 	                if(world.isAirBlock(l, r, n)) {
 		                world.setBlock(l, r, n, Block.fire.blockID);
