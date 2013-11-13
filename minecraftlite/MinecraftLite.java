@@ -25,7 +25,12 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
+<<<<<<< HEAD
 
+=======
+import minecraftlite.items.LightningStick;
+import minecraftlite.plugins.Powersuits;
+>>>>>>> cd11bae41c4f935545d5419600d0714a06ca6502
 @Mod(modid=MinecraftLite.modid, name="MinecraftLite", version="1.0.1")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class MinecraftLite {
@@ -330,7 +335,11 @@ ItemStack bedrockStack = new ItemStack(Block.bedrock);
   
    @EventHandler
    public void load(FMLPostInitializationEvent event) {
+<<<<<<< HEAD
 	  
+=======
+	  Powersuits.Addon();
+>>>>>>> cd11bae41c4f935545d5419600d0714a06ca6502
    }
    
    

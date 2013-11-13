@@ -70,8 +70,12 @@ public class FireStick extends Item {
 	         int i = movingobjectposition.blockX;
 	                int j = movingobjectposition.blockY;
 	                int k = movingobjectposition.blockZ;
+<<<<<<< HEAD
 	                if(entityplayer.capabilities.isCreativeMode||entityplayer.inventory.consumeInventoryItem(Item.redstone.itemID)) {
 	                
+=======
+	         
+>>>>>>> cd11bae41c4f935545d5419600d0714a06ca6502
 	                for(int w = 0; w < 2; w++) {
 		                o = w;
 		                	l = i + o;
@@ -98,7 +102,11 @@ public class FireStick extends Item {
 		                if(world.isAirBlock(l, r, n)) {
 			                world.setBlock(l, r, n, Block.fire.blockID);
 			                }
+<<<<<<< HEAD
 	                }
+=======
+	                
+>>>>>>> cd11bae41c4f935545d5419600d0714a06ca6502
 	                }
 	         }return itemstack; 
 	    	

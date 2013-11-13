@@ -50,10 +50,17 @@ public class TeleportationStick extends Item {
             double a = (double)i;
             double b = (double)j;
             double c = (double)k;
+<<<<<<< HEAD
             if(entityplayer.capabilities.isCreativeMode||entityplayer.inventory.consumeInventoryItem(Item.redstone.itemID)) { 
             
             entityplayer.setLocationAndAngles(a, b, c, entityplayer.rotationYaw, 0.0F);
             }  
+=======
+           
+            
+            entityplayer.setLocationAndAngles(a, b, c, entityplayer.rotationYaw, 0.0F);
+           
+>>>>>>> cd11bae41c4f935545d5419600d0714a06ca6502
     
     }
      return itemstack; 

@@ -55,7 +55,11 @@ public class TreeStick extends Item {
           
            
         	  
+<<<<<<< HEAD
            if(entityplayer.capabilities.isCreativeMode||entityplayer.inventory.consumeInventoryItem(Item.redstone.itemID)) {
+=======
+        	   
+>>>>>>> cd11bae41c4f935545d5419600d0714a06ca6502
         	   world.setBlock(i, j, k, Block.wood.blockID);
         	   world.setBlock(i, j + 1, k, Block.wood.blockID);
         	   world.setBlock(i, j + 2, k, Block.wood.blockID);
@@ -166,7 +170,11 @@ public class TreeStick extends Item {
         	   
         	   
         	   
+<<<<<<< HEAD
            }	   
+=======
+        	   
+>>>>>>> cd11bae41c4f935545d5419600d0714a06ca6502
             
      }return itemstack; 
 }

@@ -19,7 +19,11 @@ public class TimeStick extends Item {
 	}
 	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer)
     {
+<<<<<<< HEAD
 		if(entityplayer.capabilities.isCreativeMode||entityplayer.inventory.consumeInventoryItem(Item.redstone.itemID)) {
+=======
+   
+>>>>>>> cd11bae41c4f935545d5419600d0714a06ca6502
 		long t = world.getWorldTime();
      if(t >= 22812 || t <= 13187 ) {
     	 world.setWorldTime(18000); 
@@ -35,7 +39,11 @@ public class TimeStick extends Item {
      }
                 
                 
+<<<<<<< HEAD
 		}       
+=======
+            
+>>>>>>> cd11bae41c4f935545d5419600d0714a06ca6502
      return itemstack; 
 }
 
