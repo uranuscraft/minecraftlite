@@ -1,4 +1,6 @@
 package minecraftlite;
+import minecraftlite.achievement.CraftingHandler;
+import minecraftlite.items.DivingStick;
 import minecraftlite.items.MiningStick;
 import minecraftlite.items.RainStick;
 import minecraftlite.items.TeleportationStick;
@@ -10,9 +12,13 @@ import minecraftlite.items.MagicBlazeRod;
 import minecraftlite.items.TransmutationStick;
 import minecraftlite.items.TreeStick;
 import net.minecraft.block.Block;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.stats.Achievement;
+import net.minecraft.stats.AchievementList;
+import net.minecraftforge.common.AchievementPage;
 import net.minecraftforge.common.Configuration;
 import net.minecraftforge.common.Property;
 import cpw.mods.fml.common.Loader;
@@ -25,14 +31,17 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.LanguageRegistry;
-import minecraftlite.items.LightningStick;
-import minecraftlite.plugins.Powersuits;
+
+
+
 @Mod(modid=MinecraftLite.modid, name="MinecraftLite", version="1.0.1")
 @NetworkMod(clientSideRequired = true, serverSideRequired = false)
 public class MinecraftLite {
 	@Instance(value = "uranuscraft_minecraftlite")
     public static MinecraftLite instance;
    public static final String modid = "uranuscraft_minecraftlite";
+   //Declare Items
+   
    public static Item LightningStick;
    public static Item Firestick;
    public static Item blazestick;
@@ -43,6 +52,19 @@ public class MinecraftLite {
    public static Item treestick;
    public static Item timestick;
    public static Item enderstick;
+   public static Item divestick;
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
    @EventHandler
    public void preInit(FMLPreInitializationEvent event) {
            Configuration config = new Configuration(event.getSuggestedConfigurationFile());
@@ -54,6 +76,10 @@ public class MinecraftLite {
          //Config for an Item in the FireMod
            BlazeItemID = config.get(Configuration.CATEGORY_ITEM, "BlazeItemID", 1397).getInt();
          
+           //Config for an Achievement
+           FireAchievementID = config.get(Configuration.CATEGORY_ITEM, "FireAchievementID", 1937).getInt();
+           //Config for an Achievement
+           BedrockAchievementID = config.get(Configuration.CATEGORY_ITEM, "BedrockAchievementID", 1937).getInt();
          //Config for the Item TimeStick
            timeItemID = config.get(Configuration.CATEGORY_ITEM, "timeItemID", 2197).getInt();
            //Config for the Item OreStick
@@ -70,6 +96,11 @@ public class MinecraftLite {
            
          //Config for the Item the rainStick
            rainItemID = config.get(Configuration.CATEGORY_ITEM, "rainItemID", 1717).getInt();
+           
+         
+         //Config for the Item DivingStick
+           diveItemID = config.get(Configuration.CATEGORY_ITEM, "diveItemID", 1197).getInt();
+        
            
            
            
@@ -123,6 +154,17 @@ public class MinecraftLite {
 	   
 	   enderstick = new TeleportationStick(enderItemID);
 	   LanguageRegistry.addName(enderstick, "Teleportation Stick");
+	   
+	   divestick = new DivingStick(diveItemID);
+	   LanguageRegistry.addName(divestick, "Diving Stick");
+	   
+	   
+	   
+	   
+	   ItemStack lily = new ItemStack(Block.waterlily);
+		
+       GameRegistry.addRecipe(new ItemStack(divestick), "x", "x",
+	                'x', lily);
 	   
 	   ItemStack end = new ItemStack(Item.enderPearl);
 		
@@ -325,23 +367,46 @@ ItemStack bedrockStack = new ItemStack(Block.bedrock);
 	   
 	   
 	   }
+	   LanguageRegistry.instance().addStringLocalization("itemGroup.tabSticks", "en_US", "Sticks");
+	   this.addAchievementLocalizations();
+	   
+	   this.addAchievementLocalizationsbedrock();
+	   AchievementPage.registerAchievementPage(lite);
+	   GameRegistry.registerCraftingHandler(craftHandler);
    
+	   Firestick.setCreativeTab(this.tabSticks);
+	   divestick.setCreativeTab(this.tabSticks);
+	   orestick.setCreativeTab(this.tabSticks);
+	   minestick.setCreativeTab(this.tabSticks);
+  
+	   blazestick.setCreativeTab(this.tabSticks);
    
+	   timestick.setCreativeTab(this.tabSticks);
+   
+	   rainstick.setCreativeTab(this.tabSticks);
+	   LightningStick.setCreativeTab(this.tabSticks);
+	   enderstick.setCreativeTab(this.tabSticks);
+	   tntstick.setCreativeTab(this.tabSticks);
+	   treestick.setCreativeTab(this.tabSticks);
    }
   
    @EventHandler
    public void load(FMLPostInitializationEvent event) {
-	  Powersuits.Addon();
+
+	 
    }
    
    
    
-   //declare variables
+   //declare booleans 
    public static boolean SpiderEyesToRedstone;
 public static boolean CoalMod;
 public static boolean Fire;
 public static boolean Bedrock;
-   public static int CoalAmount;
+   
+
+// declare ints
+public static int CoalAmount;
    public static int ItemID;
    public static int FireItemID;
    public static int BlazeItemID;
@@ -352,6 +417,87 @@ public static boolean Bedrock;
    public static int treeItemID;
    public static int timeItemID;
    public static int enderItemID;
+   public static int diveItemID;
+   public static int FireAchievementID;
   
+   public static int BedrockAchievementID;
+   
+   
+   
+   
+   //Declare Achievements
+   public static final Achievement fireAchieve = new Achievement(FireAchievementID, "fireAchieve", 1, -2, Firestick, AchievementList.portal).registerAchievement();
+   
+   
+   
+   
+   private void addAchievementName(String ach, String name)
+   {
+           LanguageRegistry.instance().addStringLocalization("achievement." + ach, "en_US", name);
+   }
+
+   private void addAchievementDesc(String ach, String desc)
+   {
+           LanguageRegistry.instance().addStringLocalization("achievement." + ach + ".desc", "en_US", desc);
+   }
+  
+   
+   
+   private void addAchievementLocalizations()
+   {
+                   this.addAchievementName("fireAchieve", "The Fire Man");
+                   this.addAchievementDesc("fireAchieve", "Destroy your foes with fire");
+   }
+   
+   
+ 
+   public static final Achievement bedrockAchieve = new Achievement(BedrockAchievementID, "bedrockAchieve", -1, 2, Block.bedrock, AchievementList.diamonds).registerAchievement();
+   
+   
+   
+   
+   private void addAchievementNamebedrock(String ach, String name)
+   {
+           LanguageRegistry.instance().addStringLocalization("achievement." + ach, "en_US", name);
+   }
+
+   private void addAchievementDescbedrock(String ach, String desc)
+   {
+           LanguageRegistry.instance().addStringLocalization("achievement." + ach + ".desc", "en_US", desc);
+   }
+  
+   
+   
+   private void addAchievementLocalizationsbedrock()
+   {
+                   this.addAchievementNamebedrock("bedrockAchieve", "Bedrock?");
+                   this.addAchievementDescbedrock("bedrockAchieve", "You have crafted bedrock");
+   }
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   public static AchievementPage lite = new AchievementPage("MinecraftLite", fireAchieve, bedrockAchieve);
+   
+   
+   
+   public static CraftingHandler craftHandler = new CraftingHandler();
+   
+   public static CreativeTabs tabSticks = new CreativeTabs("tabSticks") {
+       public ItemStack getIconItemStack() {
+               return new ItemStack(LightningStick, 1, 0);
+       }
+};
+
+
+
 }
 

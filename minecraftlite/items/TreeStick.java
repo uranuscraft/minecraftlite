@@ -2,7 +2,11 @@ package minecraftlite.items;
 
 import java.util.Random;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import minecraftlite.MinecraftLite;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -22,6 +26,11 @@ public class TreeStick extends Item {
         setUnlocalizedName("treestick");
 
 	}
+	 @SideOnly(Side.CLIENT)
+     public void registerIcons(IconRegister par1IconRegister)
+     {
+         this.itemIcon = par1IconRegister.registerIcon(MinecraftLite.modid + ":" + (this.getUnlocalizedName().substring(5)));
+     }
 	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer)
     {
     float f = 1.0F;
@@ -55,7 +64,7 @@ public class TreeStick extends Item {
           
            
         	  
-        	   
+           if(entityplayer.capabilities.isCreativeMode||entityplayer.inventory.consumeInventoryItem(Item.redstone.itemID)) {
         	   world.setBlock(i, j, k, Block.wood.blockID);
         	   world.setBlock(i, j + 1, k, Block.wood.blockID);
         	   world.setBlock(i, j + 2, k, Block.wood.blockID);
@@ -166,7 +175,7 @@ public class TreeStick extends Item {
         	   
         	   
         	   
-        	   
+           }	   
             
      }return itemstack; 
 }

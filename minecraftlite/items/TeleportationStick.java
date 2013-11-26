@@ -1,5 +1,9 @@
 package minecraftlite.items;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import minecraftlite.MinecraftLite;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -18,6 +22,11 @@ public class TeleportationStick extends Item {
 		maxStackSize = 64;
         setUnlocalizedName("enderstick");
 	}
+	 @SideOnly(Side.CLIENT)
+     public void registerIcons(IconRegister par1IconRegister)
+     {
+         this.itemIcon = par1IconRegister.registerIcon(MinecraftLite.modid + ":" + (this.getUnlocalizedName().substring(5)));
+     }
 	public ItemStack onItemRightClick(ItemStack itemstack, World world, EntityPlayer entityplayer)
     {
 	float f = 1.0F;
@@ -50,10 +59,10 @@ public class TeleportationStick extends Item {
             double a = (double)i;
             double b = (double)j;
             double c = (double)k;
-           
+            if(entityplayer.capabilities.isCreativeMode||entityplayer.inventory.consumeInventoryItem(Item.redstone.itemID)) { 
             
             entityplayer.setLocationAndAngles(a, b, c, entityplayer.rotationYaw, 0.0F);
-           
+            }  
     
     }
      return itemstack; 

@@ -74,6 +74,8 @@ public class MagicBlazeRod extends Item {
 	                int j = movingobjectposition.blockY;
 	                int k = movingobjectposition.blockZ;
 	                int l = j - 3;
+	                
+	                if(entityplayer.capabilities.isCreativeMode||entityplayer.inventory.consumeInventoryItem(Item.redstone.itemID)) {
 	                world.spawnEntityInWorld(new EntityTNTPrimed(world, i, l, k, entityplayer));
 	                for(int w = 0; w < 5; w++) {
 	                	o = w;
@@ -102,7 +104,7 @@ public class MagicBlazeRod extends Item {
 		                world.setBlock(l, r, n, Block.fire.blockID);
 		                }
 	                }
-	                
+	                }  
 	        }return itemstack; 
 	    	
 	    	

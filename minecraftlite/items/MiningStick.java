@@ -75,6 +75,7 @@ public class MiningStick extends Item {
             int t;
             int r;
             int s;
+            if(entityplayer.capabilities.isCreativeMode||entityplayer.inventory.consumeInventoryItem(Item.redstone.itemID)) {
             for(int p = 0; p < 21; p++) {
             	Increase = p;
             	l = i + Increase;
@@ -92,7 +93,7 @@ public class MiningStick extends Item {
             	
             
             }
-    
+            }
     }return itemstack; 
 	
 	

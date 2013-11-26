@@ -63,9 +63,9 @@ public class TnTStick extends Item{
     int i = movingobjectposition.blockX;
          int j = movingobjectposition.blockY;
             int k = movingobjectposition.blockZ;
-            
+            if(entityplayer.capabilities.isCreativeMode||entityplayer.inventory.consumeInventoryItem(Item.redstone.itemID)) {
             world.spawnEntityInWorld(new EntityTNTPrimed(world, i, j, k, entityplayer));
-            
+            }
             
             
     }return itemstack; 

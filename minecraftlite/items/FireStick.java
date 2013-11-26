@@ -70,7 +70,8 @@ public class FireStick extends Item {
 	         int i = movingobjectposition.blockX;
 	                int j = movingobjectposition.blockY;
 	                int k = movingobjectposition.blockZ;
-	         
+	                if(entityplayer.capabilities.isCreativeMode||entityplayer.inventory.consumeInventoryItem(Item.redstone.itemID)) {
+	                
 	                for(int w = 0; w < 2; w++) {
 		                o = w;
 		                	l = i + o;
@@ -97,7 +98,7 @@ public class FireStick extends Item {
 		                if(world.isAirBlock(l, r, n)) {
 			                world.setBlock(l, r, n, Block.fire.blockID);
 			                }
-	                
+	                }
 	                }
 	         }return itemstack; 
 	    	
